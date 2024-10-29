@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Destinations Recommendations System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-bar">
+          <div class="logo">
+            <h2>Travel<span>Nest</span></h2>
+          </div>  
+            <div class="links">
+                <ul>
+                    <li><a href="#top-picks">Top Picks</a></li>
+                    <li><a href="#Explore Regions">Explore Map</a></li>
+                    <li><a href="#Nearby Attractions">Nearby Attractions</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="home-page">
+     <div class="intro">
+         <h1>Welcome to Travel<span>Nest</span></h1>
+         <br>
+         <h3>Discover Your Next Adventure with Tailored Recommendations!</h3>
+         <br>
+         <h4>Your go-to platform for discovering the best travel destinations across India.
+             Whether you're a solo traveler, family vacationer, or adventure seeker.</h4><br><h4> we offer personalized recommendations 
+             to help you find the perfect places to visit.</h4>
+             <br>
+             <br>
+             <br>
+             <li><a href="#top-picks">Get Started</a></li>
+             <img src="{{ url_for('static', filename='images/—Pngtree—airplane travel tourism supplies_6374202.png') }}" alt="Airplane Image">
+
+     </div>
+     <div class="first-recommendations" id="top-picks">
+        <h2>Top 5 Picks for Your <span>Next</span> <span>Adventure</span></h2>
+        <div class="first-card-holder">
+            {% for pick in top_picks %}
+            <div class="card">
+               <div class="flex-card"> 
+                <img src="{{ pick.Image_URL }}" alt="image">
+                <h3>{{ pick.Name }}</h3>
+                <p>{{ pick.State }} , {{ pick.City }}</p>
+               </div>
+               <div class= "info-card">
+                <p><strong>Rating <i class="fas fa-star"></i> :</strong> {{ pick.Google_review_rating }} </p>
+                <p><strong>Establishment Year:</strong> {{ pick.Establishment_Year }} </p>
+                <p><strong>Significance to:</strong> {{ pick.Significance }} </p>
+                <p><strong>Best time to visit:</strong> {{ pick.Best_Time_to_visit }} </p>
+               </div>
+            </div>
+            {% endfor %}
+        </div>
+        <button class="gradient-button" onclick="refreshPage()">Refresh</button>
+     </div>
+     <div class="third-recommendations" id="Explore Regions">
+      <div class = "view-page">
+        <div class="third_recomm_heading">
+            <h1>Want to</h1>
+            <h1><span>Explore</span> <span>India</span> by</h1>
+            <h1><span>Region</span>?</h1>
+        </div>
+        <div class="India-map">
+            <img src="{{ url_for('static', filename='images/NicePng_indian-baby-png_3655555.png') }}" alt="Airplane Image">
+            <form id="region-form" action="/region" method="POST">
+                <button type="submit" name="region" value='Northern' onclick="submitForm2(event)">Northern</button>
+                <button type="submit" name="region" value='North Eastern' onclick="submitForm2(event)">North Eastern</button>
+                <button type="submit" name="region" value='Eastern' onclick="submitForm2(event)">Eastern</button>
+                <button type="submit" name="region" value='Central' onclick="submitForm2(event)">Central</button>
+                <button type="submit" name="region" value='Western' onclick="submitForm2(event)">Western</button>
+                <button type="submit" name="region" value='Southern' onclick="submitForm2(event)">Southern</button>
+            </form>
+        </div>
+      </div>  
+        <div class="first-card-holder" id="recommendations"></div>
+     </div>
+     <div class="second-recommendations" id="Nearby Attractions">
+        <h2>Discover <span>More</span> of What You <span>Love!</span></h2>
+        <br>
+        <h1>See Where Else You Might <span class='span-color'>Love to Travel</span></h1>
+        <form id="place-form" onsubmit="return false;"> 
+            <div class="custom-select">
+                <input type="text" id="search" placeholder="Search for a place..." onkeyup="filterFunction()">
+                <div id="dropdown" class="dropdown-content">
+                    {% for place in places_name %}
+                        <div class="dropdown-item" onclick="selectPlace('{{ place }}')">{{ place }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+            <input type="hidden" name="Places_name" id="selected-place">
+            <button type="button" class="submit-button" onclick="submitForm()">Get Recommendations</button>
+        </form>
+        <div class="first-card-holder" id="recommendations-holder"></div>
+     </div>
+    </div>
+    <footer>
+        
+    </footer>
+    <script>
+        function refreshPage() {
+            location.reload();
+        }
+
+        function filterFunction() {
+            var input, filter, div, item, i;
+            input = document.getElementById("search");
+            filter = input.value.toLowerCase();
+            div = document.getElementById("dropdown");
+            div.style.display = "block"; // Show dropdown
+            item = div.getElementsByClassName("dropdown-item");
+            
+            for (i = 0; i < item.length; i++) {
+                if (item[i].innerHTML.toLowerCase().indexOf(filter) > -1) {
+                    item[i].style.display = "";
+                } else {
+                    item[i].style.display = "none";
+                }
+            }
+            if (filter === "") {
+                div.style.display = "none"; // Hide dropdown if search is empty
+            }
+        }
+    
+        function selectPlace(place) {
+            document.getElementById("search").value = place;
+            document.getElementById("selected-place").value = place;
+            document.getElementById("dropdown").style.display = "none"; // Hide dropdown after selection
+        }
+    
+        // Hide the dropdown if clicked outside
+        window.onclick = function(event) {
+            if (!event.target.matches('#search')) {
+                document.getElementById("dropdown").style.display = "none";
+            }
+        }
+
+        function submitForm() {
+            const selectedPlace = document.getElementById('selected-place').value;
+            if (selectedPlace) {
+                document.getElementById('place-form').submit(); // Submit the form if a place is selected
+            } else {
+                alert("Please select a place."); // Alert if no place is selected
+            }
+        }
+        function refreshRecommendations() {
+            $.ajax({
+                url: '/refresh-top-picks',
+                type: 'GET',
+                success: function(data) {
+                    $('#recommendations-holder').empty(); // Clear existing recommendations
+                    data.forEach(function(recommend) {
+                        $('#recommendations-holder').append(`
+                            <div class="card">
+                                <div class="flex-card"> 
+                                    <img src="${recommend.Image_URL}" alt="image">
+                                    <h3>${recommend.Name}</h3>
+                                    <p>${recommend.State}, ${recommend.City}</p>
+                                </div>
+                                <div class="info-card">
+                                    <p><strong>Rating <i class="fas fa-star"></i> :</strong> ${recommend.Google_review_rating}</p>
+                                    <p><strong>Establishment Year:</strong> ${recommend.Establishment_Year}</p>
+                                    <p><strong>Significance:</strong> ${recommend.Significance}</p>
+                                    <p><strong>Best Time to Visit:</strong> ${recommend.Best_Time_to_visit}</p>
+                                </div>
+                            </div>
+                        `);
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error("An error occurred: " + error);
+                }
+            });
+        }
+
+        function submitForm() {
+            const selectedPlace = document.getElementById('selected-place').value;
+            if (selectedPlace) {
+                $.ajax({
+                    url: '/recommend',
+                    type: 'POST',
+                    data: { Places_name: selectedPlace },
+                    success: function(response) {
+                        // Clear previous recommendations
+                        $('#recommendations-holder').empty();
+    
+                        // Check if response is an array
+                        if (Array.isArray(response) && response.length > 0) {
+                            // Append new recommendations in card format
+                            response.forEach(function(recommend) {
+                                $('#recommendations-holder').append(`
+                                    <div class="card">
+                                        <div class="flex-card"> 
+                                            <img src="${recommend.Image_URL}" alt="image">
+                                            <h3>${recommend.Name}</h3>
+                                            <p>${recommend.State}, ${recommend.City}</p>
+                                        </div>
+                                        <div class="info-card">
+                                            <p><strong>Rating <i class="fas fa-star"></i> :</strong> ${recommend.Google_review_rating}</p>
+                                            <p><strong>Establishment Year:</strong> ${recommend.Establishment_Year}</p>
+                                            <p><strong>Significance to:</strong> ${recommend.Significance}</p>
+                                            <p><strong>Best time to visit:</strong> ${recommend.Best_Time_to_visit}</p>
+                                        </div>
+                                    </div>
+                                `);
+                            });
+                        } else {
+                            $('#recommendations-holder').append('<p>No recommendations found.</p>');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        alert("An error occurred while fetching recommendations: " + error);
+                    }
+                });
+            } else {
+                alert("Please select a place.");
+            }
+        }
+
+        let lastRegion = null;
+
+        function submitForm2(event) {
+            event.preventDefault(); 
+            
+
+        
+            document.getElementById('recommendations').scrollIntoView({ behavior: 'smooth' });
+    
+            const region = $(event.target).val();
+            lastRegion = region;
+                $.ajax({
+                    url: '/region',
+                    type: 'POST',
+                    data: { region: region },
+                    success: function(response) {
+                        // Clear previous recommendations
+                        $('#recommendations').empty();
+    
+                        // Check if response is an array
+                        if (Array.isArray(response) && response.length > 0) {
+                            // Append new recommendations in card format
+                            response.forEach(function(recommend) {
+                                $('#recommendations').append(`
+                                    <div class="card">
+                                        <div class="flex-card"> 
+                                            <img src="${recommend.Image_URL}" alt="image">
+                                            <h3>${recommend.Name}</h3>
+                                            <p>${recommend.State}, ${recommend.City}</p>
+                                        </div>
+                                        <div class="info-card">
+                                            <p><strong>Rating <i class="fas fa-star"></i> :</strong> ${recommend.Google_review_rating}</p>
+                                            <p><strong>Establishment Year:</strong> ${recommend.Establishment_Year}</p>
+                                            <p><strong>Significance to:</strong> ${recommend.Significance}</p>
+                                            <p><strong>Best time to visit:</strong> ${recommend.Best_Time_to_visit}</p>
+                                        </div>
+                                    </div>
+                                    
+                                `);
+                            });
+                        } else {
+                            $('#recommendations').append('<p>No recommendations found.</p>');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        alert("An error occurred while fetching recommendations: " + error);
+                    }
+                });
+            
+        }
+
+        function refreshRecommendations2() {
+            if (lastRegion) {
+                $.ajax({
+                    url: '/region',
+                    type: 'POST',
+                    data: { region: lastRegion }, // Use the last selected region
+                    success: function(response) {
+                        // Clear previous recommendations
+                        $('#recommendations').empty();
+                        
+                        // Append new recommendations in card format
+                        response.forEach(function(recommend) {
+                            $('#recommendations').append(`
+                                <div class="card">
+                                    <div class="flex-card"> 
+                                        <img src="${recommend.Image_URL}" alt="image" style="width: 100px; height: auto;">
+                                        <h3>${recommend.Name}</h3>
+                                        <p>${recommend.State}, ${recommend.City}</p>
+                                    </div>
+                                    <div class="info-card">
+                                        <p><strong>Rating <i class="fas fa-star"></i> :</strong> ${recommend.Google_review_rating}</p>
+                                        <p><strong>Establishment Year:</strong> ${recommend.Establishment_Year}</p>
+                                        <p><strong>Significance:</strong> ${recommend.Significance}</p>
+                                        <p><strong>Best time to visit:</strong> ${recommend.Best_Time_to_visit}</p>
+                                    </div>
+                                </div>
+                            `);
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        alert("An error occurred while refreshing recommendations: " + error);
+                    }
+                });
+            } else {
+                alert('Please select a region first.');
+            }
+        }
+        let r = document.querySelector("#recommendations");
+        let b = document.getElementByName("region");
+        b.onclick = function () {
+            r.scrollIntoView({ behavior: "smooth" });
+        }
+        
+        
+    </script>    
+</body>
+</html>

@@ -1,0 +1,787 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    list-style: none;
+    text-decoration: none;
+    
+
+}
+html{
+    scroll-behavior: smooth;
+    scroll-padding-top: 75px;
+    overflow-x: hidden;
+}
+a{
+    color: white;
+}
+body{
+    background-image: url("../images/Screenshot 2024-10-19 202334.png");
+    background-size: cover; 
+   background-repeat: no-repeat;
+    background-position:center; 
+    background-attachment: fixed;
+    width: 100%;
+   
+}
+
+.home-page{
+    width: 100%;
+    backdrop-filter: blur(160px);
+    height:max-content;
+    padding-top:110px;
+    padding-bottom: 50px;
+}
+
+nav{
+    width: 100%;
+    max-height: 60px;
+    background-color:transparent;
+    backdrop-filter: blur(20px);
+    position: fixed;
+    top: 0;
+    z-index: 23;
+    
+
+}
+.nav-bar{
+width: 90%;
+margin: auto;
+height: 60px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+h2{
+    color:black;
+}
+
+h1 span{
+    color: orangered;
+}
+
+h2 span{
+    color: orangered;
+}
+.links ul{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap:40px;
+}
+.links ul li {
+    background:linear-gradient(to top right,orange,orangered);
+    padding: 12px 15px;
+    border-radius: 25px;
+    margin: 5px;
+    transition: ease-in-out;
+}
+.links ul li a{
+  color: white;
+  font-weight: 500;
+  font-size: 15px;
+
+}
+.links ul li:hover {
+    background: linear-gradient(to bottom left, orange,orangered); 
+    cursor: pointer; 
+}
+.home-page .intro{
+    width: 90%;
+    height: 60vh; 
+    margin: auto;
+    background-color:rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 30px;
+    border-radius: 30px;
+    box-shadow: 0 0 4px white;
+    position: relative;
+
+}
+.home-page .intro h1{
+    /* font-size: 35px; */
+    color: black;
+}
+h3{
+    color: #555;
+}
+h4{
+    color: #222;
+}
+.home-page .intro li{
+    padding: 15px;
+    background-color: black;
+    width: 10%;
+    margin: auto;
+    border-radius: 30px;
+    transition: transform 0.2s ease;
+    white-space: nowrap;
+}
+.home-page .intro li:hover{
+    transform: scale(1.1);
+}
+.home-page .intro img{
+    width: 300px;
+    height: 300px;
+right: 0;
+top: 30%;
+position: absolute;
+    
+}
+
+.first-recommendations{
+    width: 95%;
+    height: 80vh;
+
+    margin: 180px auto 0px;
+    background-color:rgba(255,255,255,0.7);
+    padding: 20px;
+    border-radius: 30px;
+    box-shadow: 0 0 4px white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.first-recommendations h2 span:first-child{
+    color: orange;
+}
+
+
+
+.first-card-holder {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 20px;
+    gap: 25px;
+    /* background-color: antiquewhite; */
+    padding: 10px;
+}
+
+.card {
+    background:white;
+    width: 250px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    line-height: 20px;
+}
+
+
+
+.card img {
+    width: 100%;
+    height: 150px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    font-size: 18px;
+    color: orangered;
+}
+
+.card p {
+    font-size: 14px;
+    color: #444;
+}
+
+.card .info-card p strong i{
+    font-size: 14px;
+    color: rgb(255, 217, 0);
+}
+
+
+
+.card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+}
+
+.gradient-button {
+    background: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    margin: 50px;
+    transition: transform 0.3s ease;
+}
+
+.gradient-button:hover {
+    transform: scale(1.1);
+}
+
+.second-recommendations{
+    width: 95%;
+    min-height: 88vh;
+    margin: 180px auto 0px;
+    background-color:rgba(255,255,255,0.7);
+    padding: 20px;
+    border-radius: 30px;
+    box-shadow: 0 0 4px white;
+    height: auto;
+
+}
+.second-recommendations h2,h1{
+   text-align: center;
+}
+
+.second-recommendations h1 .span-color{
+    color: orangered;
+}
+
+.custom-select {
+    position: relative;
+    display: inline-block;
+    width: 75%;
+    margin: 20px 0;
+    
+}
+
+#search {
+    width: 100%;
+    padding: 12px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease;
+}
+
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    z-index: 1;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 25px;
+}
+
+.dropdown-item {
+    padding: 12px;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background-color: darkorange;
+    color: white;
+}
+
+
+.submit-button {
+    padding: 12px 20px; 
+    border: none; 
+    border-radius: 25px; 
+    background-color: black;
+    color: white; 
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: background 0.3s ease; 
+}
+
+.submit-button:hover {
+    background:linear-gradient(to top right,orangered,orange); 
+}
+#place-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.third-recommendations{
+    width: 95%;
+    height: max-content;
+    margin: 180px auto 0px;
+    background-color:rgba(255,255,255,0.7);
+    padding: 20px;
+    border-radius: 30px;
+    box-shadow: 0 0 4px white;
+   
+
+
+
+}
+
+.third-recommendations .view-page{
+    display: flex;
+}
+
+.third-recommendations .third_recomm_heading{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 60vh;
+    gap: 10px;
+    
+}
+
+.third-recommendations .third_recomm_heading h1{
+    font-size: 40px;
+    
+}
+.third-recommendations .third_recomm_heading h1 span{
+    font-size: 45px;
+    color: orange;
+    
+}
+.third-recommendations .third_recomm_heading h1 span:first-child{
+    
+    color: orangered;
+    
+}
+
+.third-recommendations .India-map{
+ width: 50%;
+ height: 73vh;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+position: relative;
+}
+
+.third-recommendations .India-map img{
+ width: 500px;
+ height: 500px;
+ 
+}
+
+.third-recommendations .India-map form {
+    position: absolute;
+    width: 100%;
+ height: 83vh;
+ display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center; 
+    gap: 15px; 
+}
+
+.third-recommendations .India-map form button{
+    padding: 12px 15px; 
+    border: none; 
+    border-radius: 10px; 
+    background-color: rgba(0, 0, 0, 0.65); 
+    color:white; 
+    font-size: 16px; 
+    cursor: pointer; 
+
+    transition: transform 0.2s ease-in-out; 
+}
+
+.third-recommendations .India-map form button:hover{
+   
+    background:black; 
+    color: white;
+    transform: scale(0.9);
+
+   
+}
+
+
+.third-recommendations .India-map form button:nth-child(1) {
+    position: absolute;
+    top:120px;
+    left: 185px;
+    scroll-padding: 100px;
+    
+}
+.third-recommendations .India-map form button:nth-child(2) {
+    position: absolute;
+    top:230px;
+    left: 480px;
+    
+}
+
+.third-recommendations .India-map form button:nth-child(3) {
+    position: absolute;
+    
+    left: 350px;
+    top:310px;
+    
+}
+
+.third-recommendations .India-map form button:nth-child(4) {
+    position: absolute;
+    
+    left: 220px;
+    top:240px;
+    
+}
+
+.third-recommendations .India-map form button:nth-child(5) {
+    position: absolute;
+    
+    left: 120px;
+    top:320px;
+    
+}
+.third-recommendations .India-map form button:nth-child(6) {
+    position: absolute;
+    
+    left:200px;
+    top:430px;
+    
+}
+footer{
+    width: 100%;
+    height: 60px;
+    background:linear-gradient(to top left,orangered,orange);
+}
+
+@media (min-width : 1700px) {
+  
+    .nav-bar{
+    width: 80%;
+    }
+
+    .home-page .intro{
+        width: 80%;
+    
+    }
+
+    .first-recommendations{
+        width: 80%;
+    
+    }
+    .first-card-holder {
+        gap: 50px;
+        margin-top: 75px;
+    }
+
+    .gradient-button {
+       
+        margin: 100px;
+       
+    }
+
+    .third-recommendations{
+        width: 80%;
+    }
+
+    .third-recommendations .India-map form button:nth-child(1) {
+        position: absolute;
+        top:250px;
+        left: 350px;
+        scroll-padding: 100px;
+        
+    }
+    .third-recommendations .India-map form button:nth-child(2) {
+        position: absolute;
+        top:350px;
+        left: 640px;
+        
+    }
+    
+    .third-recommendations .India-map form button:nth-child(3) {
+        position: absolute;
+        
+        left: 520px;
+        top:430px;
+        
+    }
+    
+    .third-recommendations .India-map form button:nth-child(4) {
+        position: absolute;
+        
+        left: 370px;
+        top:370px;
+        
+    }
+    
+    .third-recommendations .India-map form button:nth-child(5) {
+        position: absolute;
+        
+        left: 220px;
+        top:440px;
+        
+    }
+    .third-recommendations .India-map form button:nth-child(6) {
+        position: absolute;
+        
+        left:360px;
+        top:530px;
+        
+    }
+
+    .second-recommendations{
+        width: 80%;
+    }
+    #recommendations-holder{
+    
+        display: flex;
+        align-items: center;
+    
+        justify-content: center;
+        gap: 50px;
+    }
+
+    #recommendations{
+        display: flex;
+        align-items: center;
+    
+        justify-content: center;
+        gap: 50px;
+    }
+
+}
+
+
+
+
+/* Medium screens (1024px and above) */
+@media (max-width: 1024px) {
+    .first-recommendations,
+    .second-recommendations,
+    .third-recommendations {
+        width: 90%;
+        height: auto; /* Allow height to adjust with content */
+        padding: 15px;
+        margin-top: 120px;
+    }
+
+    .home-page .intro{
+        height: 120vh;
+        position:relative;
+        
+    }
+
+    .home-page .intro li{
+        width: 25%;
+    }
+    .home-page .intro img{
+        position: absolute;
+       top: 50%;
+       left: 35%;
+    }
+
+    .first-card-holder {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .card {
+        width: 200px;
+        padding: 15px;
+    }
+
+    .third-recommendations .India-map img {
+        width: 400px;
+        height: 400px;
+    }
+    .third-recommendations .India-map form button:nth-child(1) {
+        position: absolute;
+        top:80px;
+        left:100px;
+        scroll-padding: 100px;
+        
+    }
+    .third-recommendations .India-map form button:nth-child(2) {
+        position: absolute;
+        top:180px;
+        left: 300px;
+        
+    }
+    
+    .third-recommendations .India-map form button:nth-child(3) {
+        position: absolute;
+        
+        left: 210px;
+        top:240px;
+        
+    }
+    
+    .third-recommendations .India-map form button:nth-child(4) {
+        position: absolute;
+        
+        left: 120px;
+        top:170px;
+        
+    }
+    
+    .third-recommendations .India-map form button:nth-child(5) {
+        position: absolute;
+        
+        left: 20px;
+        top:240px;
+        
+    }
+    .third-recommendations .India-map form button:nth-child(6) {
+        position: absolute;
+        
+        left:100px;
+        top:330px;
+        
+    }
+
+}
+
+/* Small screens (768px and below) */
+@media (max-width: 768px) {
+    .home-page {
+        padding-top: 90px;
+        padding-bottom: 40px;
+    }
+
+    .home-page .intro{
+        width: 85%;
+    }
+   
+
+    .first-recommendations,
+    .second-recommendations,
+    .third-recommendations {
+        width: 85%;
+        padding: 10px;
+        margin-top: 100px;
+    }
+
+    .first-card-holder {
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+    }
+
+    .card {
+        width: 100%;
+        padding: 10px;
+    }
+    .card img {
+        object-fit: cover;
+    }
+    .third-recommendations .view-page{
+        flex-direction: column;
+        align-items: center;
+    }
+    .third-recommendations .India-map img {
+        width: 400px;
+        height: 400px;
+    }
+
+    .third-recommendations .India-map form button{
+      white-space: nowrap;
+    }
+    .third-recommendations .India-map form button:nth-child(1) {
+        top: 80px;
+        left: 40px;
+    }
+
+    .third-recommendations .India-map form button:nth-child(2) {
+        top: 190px;
+        left: 260px;
+    }
+
+    .third-recommendations .India-map form button:nth-child(3) {
+        top: 220px;
+        left: 150px;
+    }
+
+    .third-recommendations .India-map form button:nth-child(4) {
+        top: 150px;
+        left: 50px;
+    }
+
+    .third-recommendations .India-map form button:nth-child(5) {
+        top: 230px;
+        left: 0px;
+    }
+
+    .third-recommendations .India-map form button:nth-child(6) {
+        top: 320px;
+        left: 50px;
+    }
+
+   
+}
+
+/* Extra small screens (576px and below) */
+@media (max-width: 576px) {
+    .home-page {
+        padding-top: 80px;
+        padding-bottom: 30px;
+    }
+    .nav-bar{
+        justify-content: center;
+    }
+
+    .nav-bar .links{
+        display: none
+    }
+
+    /* .first-recommendations,
+    .second-recommendations,
+    .third-recommendations {
+        width: 100%;
+        padding: 5px;
+        margin-top: 80px;
+    } */
+
+    .home-page .intro img{
+        width: 190px;
+        height: 190px;
+        top: 70%;
+        left: 30%;
+    }
+
+    .home-page .intro li{
+        width: 50%;
+    }
+
+    .first-card-holder {
+        gap: 15px;
+    }
+
+    .card {
+        width: 100%;
+        padding: 18px;
+    }
+
+    .third-recommendations .India-map img {
+        width: 300px;
+        height: 300px;
+    }
+
+    /* Adjust India map buttons further for mobile */
+    .third-recommendations .India-map form button:nth-child(1) {
+        top: 80px;
+        left: 0px;
+    }
+    .third-recommendations .India-map form button:nth-child(2) {
+        top: 160px;
+        left: 90px;
+    }
+    .third-recommendations .India-map form button:nth-child(3) {
+        top: 220px;
+        left: 90px;
+    }
+    .third-recommendations .India-map form button:nth-child(4) {
+        top: 180px;
+        left: 0px;
+    }
+    .third-recommendations .India-map form button:nth-child(5) {
+        top: 220px;
+        left: -90px;
+    }
+    .third-recommendations .India-map form button:nth-child(6) {
+        top: 300px;
+        left: 10px;
+    }
+}
+
+
+
